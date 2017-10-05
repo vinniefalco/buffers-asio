@@ -1,0 +1,49 @@
+#
+# Copyright (c) 2013-2017 Vinnie Falco (vinnie dot falco at gmail dot com)
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+#
+# Official repository: https://github.com/boostorg/buffers
+#
+
+#version: 1.0.{build}-{branch}
+version: "{branch} (#{build})"
+
+shallow_clone: true
+
+platform:
+  #- x86
+  - x64
+
+configuration:
+  - Debug
+  #- Release
+
+install:
+  - SET LIB_NAME=buffers
+  - SET BOOST_BRANCH=develop
+  - IF "%APPVEYOR_REPO_BRANCH%" == "master" SET BOOST_BRANCH=master
+  - CD ..
+  - git clone -b %BOOST_BRANCH% --depth 1 https://github.com/boostorg/boost.git boost-root
+  - cd boost-root
+  - git submodule update --init tools/build
+  - git submodule update --init tools/boostdep
+  - git submodule update --init libs/array
+  - git submodule update --init libs/assert
+  - git submodule update --init libs/config
+  - git submodule update --init libs/core
+  - git submodule update --init libs/exception
+  - git submodule update --init libs/static_assert
+  - git submodule update --init libs/throw_exception
+  - git submodule update --init libs/type_traits
+  - rm -rf libs\$LIB_NAME
+  - MKDIR libs\$LIB_NAME
+  - XCOPY /s /e /q %APPVEYOR_BUILD_FOLDER% libs\$LIB_NAME\
+  - CMD /c bootstrap
+  - b2 headers
+
+build: off
+
+test_script:
+  - b2 libs/$LIB_NAME/test toolset=msvc-14.0 cxxflags=/permissive-

@@ -1,0 +1,14 @@
+{
+    "key": "buffers",
+    "name": "Buffers",
+    "authors": [
+        "Vinnie Falco"
+    ],
+    "description": "Asio buffer concepts and types without the rest of Asio",
+    "category": [
+        "Containers"
+    ],
+    "maintainers": [
+        "Vinnie Falco <vinnie.falco@gmail.com>"
+    ]
+}

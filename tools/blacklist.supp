@@ -1,0 +1,15 @@
+# Remember that this blacklist file is GLOBAL to all sanitizers
+# Be therefore extremely careful when considering to add a sanitizer
+# filter here instead of using a runtime suppression
+#
+# Remember also that filters here quite literally completely
+# remove instrumentation altogether, so filtering here means
+# that sanitizers such as tsan will false positive on problems
+# introduced by code filtered here.
+#
+# The main use for this file is ubsan, as it's the only sanitizer
+# without a runtime suppression facility.
+#
+# Be ESPECIALLY careful when filtering out entire source files!
+# Try if at all possible to filter only functions using fun:regex
+# Remember you must use mangled symbol names with fun:regex

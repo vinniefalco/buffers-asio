@@ -1,0 +1,30 @@
+#
+# Copyright (c) 2016-2017 Vinnie Falco (vinnie dot falco at gmail dot com)
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+#
+# Official repository: https://github.com/boostorg/buffers
+#
+
+project /boost/buffers/test
+    : requirements
+    <include>../subtree/unit_test/include
+    ;
+
+local SOURCES =
+    asio_buffer.cpp
+    ;
+
+path-constant TEST_MAIN : ../subtree/unit_test/include/boost/beast/unit_test/main.cpp ;
+
+for local f in $(SOURCES)
+{
+    RUN_TESTS += [ run $(f) $(TEST_MAIN) ] ;
+}
+
+alias run-tests : $(RUN_TESTS) ;
+
+exe fat-tests : $(TEST_MAIN) $(SOURCES) ;
+
+explicit fat-tests ;
