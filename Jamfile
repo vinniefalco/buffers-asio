@@ -41,9 +41,8 @@ project /boost/buffers
     <runtime-link>shared
     <debug-symbols>on
     #<define>BOOST_ALL_NO_LIB=1
-    #<define>BOOST_ASIO_DISABLE_BOOST_ARRAY=1
     <define>BOOST_ASIO_NO_DEPRECATED=1
-    <define>BOOST_NET_BUFFER_NO_ASIO=1
+    <define>BOOST_BUFFERS_NO_ASIO=1
     <toolset>msvc:<define>_SCL_SECURE_NO_WARNINGS=1
     <toolset>msvc:<define>_CRT_SECURE_NO_WARNINGS=1
     <toolset>msvc:<variant>release:<cxxflags>"/Ob2 /Oi /Ot"

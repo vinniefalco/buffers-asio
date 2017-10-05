@@ -10,7 +10,7 @@
 #ifndef BOOST_BUFFERS_ASIO_HPP
 #define BOOST_BUFFERS_ASIO_HPP
 
-#if BOOST_NET_BUFFER_NO_ASIO
+#if BOOST_BUFFERS_NO_ASIO
 # include <boost/buffers/detail/asio_buffer.hpp>
 #else
 # include <boost/asio/buffer.hpp>
